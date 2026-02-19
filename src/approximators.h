@@ -14,7 +14,7 @@ namespace approx
     /// @param C0 bulk alloy composition - wt%
     /// @param dT undercooling - K
     /// @return approximate tip radius - m
-    double getTipRaius(double r, double m, double k0, double C0, double dT)
+    inline double getTipRaius(double r, double m, double k0, double C0, double dT)
     {
         using std::numbers::pi;
         using std::pow;
@@ -29,7 +29,7 @@ namespace approx
     /// @param dT undercooling - K
     /// @param C0 bulk alloy composition - wt%
     /// @return approximate tip velocity - m/s
-    double getTipVelocity(double D, double m, double k0, double r, double dT, double C0)
+    inline double getTipVelocity(double D, double m, double k0, double r, double dT, double C0)
     {
         using std::numbers::pi;
         using std::pow;

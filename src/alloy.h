@@ -21,7 +21,7 @@ namespace alloy
     
     using std::numbers::pi;
     // should reference where these come from!
-    Alloy SnAg{61'810.62, 249.0, -3.14, 0.0191, 8.54e-8, 1.82e-9, 1.5e-5, 1/(4*pi*pi)};
+    inline Alloy SnAg{61'810.62, 249.0, -3.14, 0.0191, 8.54e-8, 1.82e-9, 1.5e-5, 1/(4*pi*pi)};
 }
 
 #endif
