@@ -38,23 +38,23 @@ Where
 - $E_1(x)$    &nbsp; is the first exponential integral of variable $x$
 
 Within these equations, there are eight constant parameters, defined as follows:
-- $L$ 	&nbsp; Latent heat of fusion - $ J/kg $
-- $c_p$ &nbsp; Specific heat capacity - $ J/(kgK) $
-- $m$ 	&nbsp; Equilibrium liquidus slope - $ K/ wt.\% $
+- $L$ 	&nbsp; Latent heat of fusion - $J/kg$
+- $c_p$ &nbsp; Specific heat capacity - $J/(kgK)$
+- $m$ 	&nbsp; Equilibrium liquidus slope - $K/ wt.\%$
 - $k_0$	&nbsp; Partition coefficient - *unitless*
-- $Γ$ 	&nbsp; Gibbs-Thomson coefficient - $ Km $
-- $D$ 	&nbsp; Solute diffusion coefficient - $ m^2/s $
-- $α$	&nbsp; Thermal diffusivity in the liquid - $ m^2/s $
+- $Γ$ 	&nbsp; Gibbs-Thomson coefficient - $Km$
+- $D$ 	&nbsp; Solute diffusion coefficient - $m^2/s$
+- $α$	&nbsp; Thermal diffusivity in the liquid - $m^2/s$
 - $σ^*$	&nbsp; Stability constant - *unitless*
 
 For Sn-Ag alloys, these parameters are
-- $L$ = 	  61,810.62 $ J/kg $
-- $c_p$ =     249 $ J/(kgK) $
-- $m$ = 	  −3.14 $ K/ wt.\% $
+- $L$ = 	  61,810.62 $J/kg$
+- $c_p$ =     249 $J/(kgK)$
+- $m$ = 	  −3.14 $K/ wt.\%$
 - $k_0$ =	  0.0191
-- $Γ$ = 	  8.54*$10^8$ $ Km $
-- $D$ = 	  1.82*$10^{–9}$ $ m^2/s $
-- $α$ =	      1.5*$10^{–5}$ $ m^2/s $
+- $Γ$ = 	  8.54 * $10^8$ $Km$
+- $D$ = 	  1.82 * $10^{–9}$ $m^2/s$
+- $α$ =	      1.5 * $10^{–5}$ $m^2/s$
 - $σ^*$ =	  $1/(4π^2)$
 
 There are four variables, defined as follows:
@@ -79,7 +79,7 @@ $$ \begin{bmatrix} V_{n+1} \cr R_{n+1} \end{bmatrix} = \begin{bmatrix} V_n \cr R
 Where:
 - n is the current step
 - n+1 is the next step in the iteration
-- $J$ is the Jacobian matrix.
+- $J$ is the Jacobian matrix:
 
 $$ J= \begin{bmatrix} {\partial f_1}/{\partial V} & {\partial f_1}/{\partial R} \cr {\partial f_2}/{\partial V} & {\partial f_2}/{\partial R} \end{bmatrix} $$
 
