@@ -16,9 +16,9 @@ The LGK-BCT model considers dendrite growth into an undercooled melt at velociti
 ### The LGK model (1984)
 [Lipton, J., Glicksman, M. E., & Kurz, W. (1984). Dendritic growth into undercooled alloy metals. Materials Science and Engineering, 65(1), 57–63.](https://doi.org/10.1016/0025-5416(84)90199-X)
 
-$$ ∆T = \frac{L}{c_p} Iv_t + mC_0 \{ 1 - \frac{1}{(1-(1-k_0 )Iv_c)} \} + \frac{2Γ}{R} \tag{1a} $$
+$$ ∆T = \frac{L}{c_p} Iv_t + mC_0 \{ 1 - \frac{1}{(1-(1-k_0 )Iv_c)} \} + \frac{2Γ}{R} $$
 
-$$ R = \frac {\frac{Γ}{σ^*}} {\frac{P_t L}{c_p} -\frac{P_c m C_0 (1-k_0 )}{1-(1-k_0 ) Iv_c}} \tag{2a} $$
+$$ R = \frac {\frac{Γ}{σ^*}} {\frac{P_t L}{c_p} -\frac{P_c m C_0 (1-k_0 )}{1-(1-k_0 ) Iv_c}} $$
 
 With the following identities
 
@@ -66,11 +66,11 @@ There are four variables, defined as follows:
 
 Fixing two of these variables, the other two can be solved iteratively using a method such as a two-dimensional Newton scheme, also known as the Newton-Raphson method in two variables.
 
-In the codes we have written in the past, the user defines fixed values for $C_0$ and $∆T$ and the values of the 8 constant parameters.  The code then uses the Newton-Raphson method in two variables to converge on the unique values of V and R that satisfy these two functions. For this, we need to get equations (1a) and (2a) into a form equal to zero and define them as functions f1 and f2:
+In the codes we have written in the past, the user defines fixed values for $C_0$ and $∆T$ and the values of the 8 constant parameters.  The code then uses the Newton-Raphson method in two variables to converge on the unique values of V and R that satisfy these two functions. For this, we need to get the LGK equations into a form equal to zero and define them as functions f1 and f2:
 
-$$ f_1(V, R) = \frac{L}{c_p} Iv_t + mC_0 \{ 1 - \frac{1}{(1-(1-k_0 )Iv_c)} \} + \frac{2Γ}{R} -∆T = 0 \tag{1b} $$
+$$ f_1(V, R) = \frac{L}{c_p} Iv_t + mC_0 \{ 1 - \frac{1}{(1-(1-k_0 )Iv_c)} \} + \frac{2Γ}{R} -∆T = 0 $$
 
-$$ f_2(V, R) = \frac {\frac{Γ}{σ^*}} {\frac{P_t L}{c_p} -\frac{P_c m C_0 (1-k_0 )}{1-(1-k_0 ) Iv_c}} - R = 0 \tag{2b} $$
+$$ f_2(V, R) = \frac {\frac{Γ}{σ^*}} {\frac{P_t L}{c_p} -\frac{P_c m C_0 (1-k_0 )}{1-(1-k_0 ) Iv_c}} - R = 0 $$
 
 The Newton-Raphson scheme in two variables can be written in long form as:
 
