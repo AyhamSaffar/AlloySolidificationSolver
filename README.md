@@ -40,7 +40,7 @@ Where
 Within these equations, there are eight constant parameters, defined as follows:
 - $L$ 	&nbsp; Latent heat of fusion - $J/kg$
 - $c_p$ &nbsp; Specific heat capacity - $J/(kgK)$
-- $m$ 	&nbsp; Equilibrium liquidus slope - $K/ wt.\%$
+- $m$ 	&nbsp; Equilibrium liquidus slope - $K/ wt.$%
 - $k_0$	&nbsp; Partition coefficient - *unitless*
 - $Γ$ 	&nbsp; Gibbs-Thomson coefficient - $Km$
 - $D$ 	&nbsp; Solute diffusion coefficient - $m^2/s$
@@ -50,7 +50,7 @@ Within these equations, there are eight constant parameters, defined as follows:
 For Sn-Ag alloys, these parameters are
 - $L$ = 	  61,810.62 $J/kg$
 - $c_p$ =     249 $J/(kgK)$
-- $m$ = 	  −3.14 $K/ wt.\%$
+- $m$ = 	  −3.14 $K/ wt.$%
 - $k_0$ =	  0.0191
 - $Γ$ = 	  8.54 * $10^8$ $Km$
 - $D$ = 	  1.82 * $10^{–9}$ $m^2/s$
@@ -59,7 +59,7 @@ For Sn-Ag alloys, these parameters are
 
 There are four variables, defined as follows:
 
-- $C_0$ Bulk alloy composition - $wt.\%$
+- $C_0$ Bulk alloy composition - $wt.$%
 - $∆T$ Undercooling - $K$
 - $V$ Velocity - $m/s$
 - $R$ Dendrite tip radius - $m$
