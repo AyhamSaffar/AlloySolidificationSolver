@@ -2,36 +2,49 @@
 #define DIFFERENTIALS_H
 
 #include <tuple>
+#include <iostream>
 #include "enzyme.h" 
 #include "alloy.h"
 
 
 namespace diff
 {
-    struct Jacobian{double df1dV{}; double df1dR{}; double df2dV{}; double df2dR{};};
     using ModelFunc =  std::tuple<double, double> (*)(double, double, double, double, const alloy::Alloy&);
-
-    // Enzyme autodiff can only handle functions that return a single value
-    template<int fToReturn>
-    double ModelWrapper(ModelFunc modelFunc, double V, double R, double dT, double C0, alloy::Alloy A)
+    
+    // Enzyme autodiff can only handle non out-parameter functions when they return a single value
+    template <ModelFunc func, int fToReturn>
+    double wrapper(double V, double R, double dT, double C0, const alloy::Alloy& A)
     {
-        std::tuple<double, double> f{modelFunc(V, R, dT, C0, A)};
+        std::tuple<double, double> f{func(V, R, dT, C0, A)};
         return std::get<fToReturn-1>(f);
     }
-
-    inline Jacobian calculateGrads(ModelFunc modelFunc, double V, double R, double dT, double C0, alloy::Alloy A)
+    struct Jacobian{double df1dV{}; double df1dR{}; double df2dV{}; double df2dR{};};
+    
+    template <ModelFunc modelFunc>
+    inline Jacobian calculateGrads(double V, double R, double dT, double C0, alloy::Alloy A)
     {
-        double dx{1.0}; // enzyme expects to scale calculated gradients by a given value
         Jacobian J{};
+        //? no idea why alloy object must be passed twice with every call
         J.df1dV = __enzyme_autodiff<double>(
-            (void*)ModelWrapper<1>,
-            enzyme_const, modelFunc,
-            enzyme_out, V, dx,
-            enzyme_const, R, dT, C0, A
+            (void*)wrapper<modelFunc, 1>, enzyme_out, V, enzyme_const, R, dT, C0, A, A 
         );
-
+        J.df1dR = __enzyme_autodiff<double>(
+            (void*)wrapper<modelFunc, 1>, enzyme_const, V, enzyme_out, R, enzyme_const, dT, C0, A, A
+        );
+        J.df2dV = __enzyme_autodiff<double>(
+            (void*)wrapper<modelFunc, 2>, enzyme_out, V, enzyme_const, R, dT, C0, A, A
+        );
+        J.df2dR = __enzyme_autodiff<double>(
+            (void*)wrapper<modelFunc, 2>, enzyme_const, V, enzyme_out, R, enzyme_const, dT, C0, A, A
+        );
         return J;
     }
+}
+
+std::ostream& operator<<(std::ostream& out, const diff::Jacobian& J)
+{
+    return out << "Jacobian(δf1/δV=" << J.df1dV << ", δf1/δR=" << J.df1dR << ", δf2/δV=" << J.df2dV << ", δf2/δR=" <<
+        J.df2dR << ')';
 }
 
 #endif
