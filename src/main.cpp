@@ -9,15 +9,13 @@
 
 int main()
 {
-    double V{1e-5};
-    double R{1e-5};
-    double dT{0.5};
-    double C0{5};
+    double V{1e-5}, R{1e-5}, dT{0.5}, C0{5.0};
+    alloy::Alloy A{alloy::SnAg};
 
-    std::tuple<double, double> LGKResiduals{models::LGK(V, R, dT, C0, alloy::SnAg)};
+    std::tuple<double, double> LGKResiduals{models::LGK(V, R, dT, C0, A)};
     std::cout << "LGK f1 =" << std::get<0>(LGKResiduals) << ", LGK f2 =" << std::get<1>(LGKResiduals) << '\n';
 
-    diff::Jacobian J{diff::calculateGrads<models::LGK>(V, R, dT, C0, alloy::SnAg)};
+    diff::Jacobian J{diff::calculateGrads<models::LGK>(V, R, dT, C0, A)};
     std::cout << J << '\n';
 
     return 0;

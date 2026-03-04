@@ -5,14 +5,13 @@
 #include <iostream>
 #include "enzyme.h" 
 #include "alloy.h"
+#include "models.h"
 
 
 namespace diff
-{
-    using ModelFunc =  std::tuple<double, double> (*)(double, double, double, double, const alloy::Alloy&);
-    
+{    
     // Enzyme autodiff can only handle non out-parameter functions when they return a single value
-    template <ModelFunc func, int fToReturn>
+    template <models::ModelFunc func, int fToReturn>
     double wrapper(double V, double R, double dT, double C0, const alloy::Alloy& A)
     {
         std::tuple<double, double> f{func(V, R, dT, C0, A)};
@@ -20,11 +19,14 @@ namespace diff
     }
     struct Jacobian{double df1dV{}; double df1dR{}; double df2dV{}; double df2dR{};};
     
-    template <ModelFunc modelFunc>
+    template <models::ModelFunc modelFunc>
     inline Jacobian calculateGrads(double V, double R, double dT, double C0, alloy::Alloy A)
     {
         Jacobian J{};
-        //? no idea why alloy object must be passed twice with every call
+        // alloy object must be passed twice as enzye thinks all object pointers (e.g. struct reference) is a pointer
+        // to a decayed pointer parameter whose gradients should be stored in a second pointer to an identical type?
+        // here however, A doesn't seem to get modified, maybe because it is labelled with "enzyme_const" meaning its
+        // derivates are never calculated.
         J.df1dV = __enzyme_autodiff<double>(
             (void*)wrapper<modelFunc, 1>, enzyme_out, V, enzyme_const, R, dT, C0, A, A 
         );

@@ -8,6 +8,9 @@
 /// @brief standard models that help calculate solidification parameters from alloy physical parameters.
 namespace models
 {
+    // template for all function headers in this module
+    using ModelFunc = std::tuple<double, double> (*)(double, double, double, double, const alloy::Alloy&);
+
     /// @brief Lipton Glicksman Kurz (LGK) model equations that analytically predict how solidification dendrites grow
     /// into a molten liquid when the interface is in equilibrium. https://doi.org/10.1016/0025-5416(84)90199-X
     ///
