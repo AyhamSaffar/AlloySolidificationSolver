@@ -28,16 +28,19 @@ namespace diff
         // here however, A doesn't seem to get modified, maybe because it is labelled with "enzyme_const" meaning its
         // derivates are never calculated.
         J.df1dV = __enzyme_autodiff<double>(
-            (void*)wrapper<modelFunc, 1>, enzyme_out, V, enzyme_const, R, dT, C0, A, A
+            (void*)wrapper<modelFunc, 1>,
+            enzyme_out, V, enzyme_const, R, enzyme_const, dT, enzyme_const, C0, enzyme_const, &A
         );
         J.df1dR = __enzyme_autodiff<double>(
-            (void*)wrapper<modelFunc, 1>, enzyme_const, V, enzyme_out, R, enzyme_const, dT, C0, A, A
+            (void*)wrapper<modelFunc, 1>, enzyme_const, V, enzyme_out, R, enzyme_const, dT, enzyme_const, C0, enzyme_const, &A
         );
         J.df2dV = __enzyme_autodiff<double>(
-            (void*)wrapper<modelFunc, 2>, enzyme_out, V,enzyme_const, R, dT, C0, A, A
+            (void*)wrapper<modelFunc, 2>,
+            enzyme_out, V, enzyme_const, R, enzyme_const, dT, enzyme_const, C0, enzyme_const, &A
         );
         J.df2dR = __enzyme_autodiff<double>(
-            (void*)wrapper<modelFunc, 2>, enzyme_const, V, enzyme_out, R, enzyme_const, dT, C0, A, A
+            (void*)wrapper<modelFunc, 2>,
+            enzyme_const, V, enzyme_out, R, enzyme_const, dT, enzyme_const, C0, enzyme_const, &A
         );
         return J;
     }

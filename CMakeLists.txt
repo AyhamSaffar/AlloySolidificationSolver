@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.20)
 
 find_package(Enzyme REQUIRED CONFIG) # must install enzyme & lld through Brew / Spack
 set(CMAKE_CXX_COMPILER "${Enzyme_LLVM_BINARY_DIR}/bin/clang++") # enzyme only on the compiler it was installed on
-set(CMAKE_CXX_STANDARD 20) # requires at least C++ 20
+set(CMAKE_CXX_STANDARD 20) # required for #include <numbers>
 
 project(AlloySolidificationSolver)
 add_executable(AlloySolidificationSolver src/main.cpp)

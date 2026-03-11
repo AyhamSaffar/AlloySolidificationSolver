@@ -15,7 +15,7 @@ int main()
     double R{approx::getTipRadius(A.r, A.m, A.k0, C0, dT)};
     diff::Jacobian J{};
 
-    for (int i{0}; i<10; ++i)
+    for (int i{0}; i<20; ++i)
     {
         std::tie(f1, f2) = models::LGK(V, R, dT, C0, A);
         J = diff::calculateGrads<models::LGK>(V, R, dT, C0, A);
