@@ -11,8 +11,6 @@ The LGK model considers dendrite growth into an undercooled melt at velocities w
 
 The LGK-BCT model considers dendrite growth into an undercooled melt at velocities where rapid solidification effects are significant, including a velocity dependent partition coefficient and velocity dependent liquidus slope.  
 
-*One further thing…. With the LGK model (the simpler one), it would be very useful if we could use values for k and m that are functions of temperature.  This means that we can use phase diagrams where the liquidus and solidus lines are not straight lines.  Perhaps it would be best if k(T) and m(T) could be entered using a polynomial of order 5.*
-
 ### The LGK model (1984)
 [Lipton, J., Glicksman, M. E., & Kurz, W. (1984). Dendritic growth into undercooled alloy metals. Materials Science and Engineering, 65(1), 57–63.](https://doi.org/10.1016/0025-5416(84)90199-X)
 
@@ -83,28 +81,6 @@ Where:
 
 $$ J= \begin{bmatrix} {\partial f_1}/{\partial V} & {\partial f_1}/{\partial R} \cr {\partial f_2}/{\partial V} & {\partial f_2}/{\partial R} \end{bmatrix} $$
 
-It is convenient to write this in terms of the difference in the variables, $∆V$ and $∆R$
-
-$∆V=V_{n+1}-V_n$
-
-$∆R=R_{n+1}-R_n$
-
-It is also convenient to have J on the left-hand side so we do not need to use its inverse.
-
-$$ J(V_n, R_n) \begin{bmatrix} ∆V \cr ∆R \end{bmatrix} = - \begin{bmatrix} f_1(V_n, R_n) \cr f_2(V_n, R_n) \end{bmatrix} $$
-
-Which can be written in shorthand as:
-
-$$ J ∆ =- F $$
-
-Therefore $∆$ can be solved with the function:
-
-$$ ∆ = -J \backslash F $$
-
-Where the backslash operator \ is the matrix left division operator.
-
-Analytical solutions for the Jacobian partial differentials can be calculated using any given automatic differentiation tool. 
-
 To perform the Newton-Raphson method, we need a good initial guess or approximate solution to the values of $V_0$ and $R_0$, i.e. $V_n$ and $R_n$ when n=0.
 
 This can be taken from the approximate analytical solution in Eq. 8.91 and 8.92 of the book ‘Solidification’ by Dantzig & Rappaz (1st Ed):
@@ -135,3 +111,12 @@ For the LGK model:
 
 For the LKT-BCT model:
 - Fig. 2 in Boettinger WJ, Coriell SR, Trivedi R. Application of Dendritic Growth Theory to the Interpretation of Rapid Solidification Microstructures. In: Rapid Solidification Processing: Principles and Technologies IV. 1988. p. 13–25.
+- Herlach, D. M., Eckler, K., Karma, A., & Schwarz, M. (2001). Grain refinement through fragmentation of dendrites in undercooled melts. Materials Science and Engineering: A, 304–306(1–2), 20–25. https://doi.org/10.1016/S0921-5093(00)01553-7
+    - Specifically, you want to use your implementation of the LKT-BCT model to calculate R versus ΔT using the constants in their Table 1.  And then put your values for R versus ΔT into their Eq. 5 to plot out Δt_bu versus ΔT and see if you get their Figure 3.  Note in their Eq. 5 that, when they write R(ΔT)^3, I think they mean (R as a function of temperature) cubed…
+
+### To Do
+- Write Catch2 unit tests for basic building blocks (currently getting unreliable convergence)
+- Attempt to reproduce some LGK plots
+- Add T dependant LGK model where diffusivity, liquidus temperature, partition coefficient, and liquidus slopes are fit polynomials. *must figure out how best to implement this*.
+- Implement LKT-BCT model and reproduce published plots
+- Fix README by moving model explanations into docs folder and adopting the summary, method, installation, usage, support, roadmap, and acknowledgment structure.
