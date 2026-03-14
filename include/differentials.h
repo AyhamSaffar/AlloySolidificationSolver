@@ -23,16 +23,13 @@ namespace diff
     inline Jacobian calculateGrads(double V, double R, double dT, double C0, alloy::Alloy A)
     {
         Jacobian J{};
-        // alloy object must be passed twice as enzye thinks all object pointers (e.g. struct reference) is a pointer
-        // to a decayed pointer parameter whose gradients should be stored in a second pointer to an identical type?
-        // here however, A doesn't seem to get modified, maybe because it is labelled with "enzyme_const" meaning its
-        // derivates are never calculated.
         J.df1dV = __enzyme_autodiff<double>(
             (void*)wrapper<modelFunc, 1>,
             enzyme_out, V, enzyme_const, R, enzyme_const, dT, enzyme_const, C0, enzyme_const, &A
         );
         J.df1dR = __enzyme_autodiff<double>(
-            (void*)wrapper<modelFunc, 1>, enzyme_const, V, enzyme_out, R, enzyme_const, dT, enzyme_const, C0, enzyme_const, &A
+            (void*)wrapper<modelFunc, 1>,
+            enzyme_const, V, enzyme_out, R, enzyme_const, dT, enzyme_const, C0, enzyme_const, &A
         );
         J.df2dV = __enzyme_autodiff<double>(
             (void*)wrapper<modelFunc, 2>,
