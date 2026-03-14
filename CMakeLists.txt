@@ -8,3 +8,4 @@ project(AlloySolidificationSolver)
 add_executable(AlloySolidificationSolver src/main.cpp)
 target_include_directories(AlloySolidificationSolver PUBLIC include) # headers in include directory
 target_link_libraries(AlloySolidificationSolver PUBLIC LLDEnzymeFlags)
+target_compile_definitions(AlloySolidificationSolver PUBLIC DATA_PATH="${CMAKE_CURRENT_SOURCE_DIR}/data/")

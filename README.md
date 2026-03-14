@@ -115,7 +115,11 @@ For the LKT-BCT model:
     - Specifically, you want to use your implementation of the LKT-BCT model to calculate R versus ΔT using the constants in their Table 1.  And then put your values for R versus ΔT into their Eq. 5 to plot out Δt_bu versus ΔT and see if you get their Figure 3.  Note in their Eq. 5 that, when they write R(ΔT)^3, I think they mean (R as a function of temperature) cubed…
 
 ### To Do
-- Write Catch2 unit tests for basic building blocks (currently getting unreliable convergence)
+- Currently getting unreliable convergence
+    - Write Catch2 unit tests for basic building blocks
+    - Maybe play with adaptive / clamped updates
+    - Hess / more sophisticated optimizer
+    - Maybe try looking up different techniques
 - Attempt to reproduce some LGK plots
 - Add T dependant LGK model where diffusivity, liquidus temperature, partition coefficient, and liquidus slopes are fit polynomials. *must figure out how best to implement this*.
 - Implement LKT-BCT model and reproduce published plots
