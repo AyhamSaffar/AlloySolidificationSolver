@@ -1,4 +1,4 @@
-# Chris Optimisation Project
+# Alloy Solidification Solver
 
 We are interested in developing code that runs two models of dendrite growth into an undercooled melt, generating data linking four variables over a wide range of growth undercoolings and velocities:
 
