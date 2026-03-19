@@ -16,8 +16,8 @@ struct Result{bool hasDiverged{}; double f1{}; double f2{}; double V{}; double R
 Result VRSolver(double dT, double C0, const alloy::Alloy& A)
 {
     double f1{}, f2{}, dV{}, dR{};
-    double V{approx::getTipVelocity(A.D, A.m, A.k0, A.r, dT, C0)};
-    double R{approx::getTipRadius(A.r, A.m, A.k0, C0, dT)};
+    double V{approx::getTipVelocity(dT, C0, A)};
+    double R{approx::getTipRadius(dT, C0, A)};
     diff::Jacobian J{};
 
     for (int i{0}; i<1'000; ++i)
