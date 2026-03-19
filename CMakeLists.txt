@@ -17,3 +17,10 @@ foreach(SRC_FILE_PATH ${SRC_FILE_PATHS})
     target_link_libraries(${SRC_FILE_NAME} PRIVATE LLDEnzymeFlags)
     target_compile_definitions(${SRC_FILE_NAME} PRIVATE DATA_PATH="${CMAKE_CURRENT_SOURCE_DIR}/data/")
 endforeach(SRC_FILE_PATH ${SRC_FILE_PATHS})
+
+file(GLOB TEST_FILE_PATHS CONFIGURE_DEPENDS tests/*.cpp)
+
+add_subdirectory(libs/Catch2)
+add_executable(tests ${TEST_FILE_PATHS})
+target_include_directories(tests PRIVATE include)
+target_link_libraries(tests PRIVATE Catch2::Catch2WithMain LLDEnzymeFlags)
