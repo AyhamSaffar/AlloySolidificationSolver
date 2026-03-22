@@ -121,6 +121,6 @@ For the LKT-BCT model:
     - Hess / more sophisticated optimizer
     - Maybe try looking up different techniques
 - Attempt to reproduce some LGK plots
-- Add T dependant LGK model where diffusivity, liquidus temperature, partition coefficient, and liquidus slopes are fit polynomials. *must figure out how best to implement this*.
+- Add T dependant LGK model where diffusivity, liquidus temperature, partition coefficient, and liquidus slopes are fit polynomials. *must figure out how best to implement this for stability criterion part of LGK*.
 - Implement LKT-BCT model and reproduce published plots
 - Fix README by moving model explanations into docs folder and adopting the summary, method, installation, usage, support, roadmap, and acknowledgment structure.

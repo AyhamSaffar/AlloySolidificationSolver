@@ -21,11 +21,9 @@ namespace models
     /// enrichment
     ///
     /// The second equation calculates the LGK stability criterion equation rearranged to equal zero. The
-    /// stability criterion is an optimal ratio between dendrite tip radius and velocity. If this ratio is too small,
-    /// the dendrite grows slowly enough that any small deviation to the solidification front would cause that point
-    /// grow much faster than the rest of the solidification front. If this ratio is too large, the dendrite grows fast
-    /// enough that secondary dendrites would start growing out from the sides of the initial dendrite, causing the
-    /// dendrite to grow more slowly overall.
+    /// stability criterion gives an accurate value for dendrite velocity times it's radius squared. Too wide and slow
+    /// dendrites split in smaller parallel dendrites. Too narrow and fast dendrites form secondary dendrites that grow
+    /// out perpendicularly.
     ///
     /// @param V velocity - m/s
     /// @param R dendrite tip radius - m
